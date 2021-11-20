@@ -14,6 +14,24 @@ function generatePassword() {
       askLength();
     }
   }
+  
+   //must define these outside of function fist so we can use them pitside the function
+   var useUpper = false;
+   var useLower = false;
+   var useNumbers = false;
+   var useSymbols = false;
+   getTypes();
+   function getTypes() {
+     useUpper = window.confirm("Use Upper Case?");
+     useLower = window.confirm("Use Lower Case?");
+     useNumbers = window.confirm("Use Numbers?");
+     useSymbols = window.confirm("Use Symbols?");
+     if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
+       window.alert("You must choose a type")
+       getTypes();
+     }
+   }
+   debugger;
  var characterArray = ['a','b','c','d','e','f','g'];
   /////////////actually generat code//////////
   var generatedPassword = "";
