@@ -9,9 +9,11 @@ function generatePassword() {
   //ask for number, if it is <8 or >128 ask again
   askLength();
   function askLength() {
-    passwordLength = window.prompt("Password Length?");
+    passwordLength = window.prompt("Please choose the length of your password. Choose a number between 8-128.");
     
-    if (passwordLength < min || passwordLength > max || passwordLength === "" ) {
+    if (passwordLength < min || passwordLength > max || passwordLength === "" || isNaN(passwordLength)==true)
+    //isNaN checks if the value is NOT a number
+    {
       window.alert("Please enter a number between 8-128");
       askLength();
     }
@@ -24,12 +26,12 @@ function generatePassword() {
    var useSymbols = false;
    getTypes();
    function getTypes() {
-     useUpper = window.confirm("Use Upper Case?");
-     useLower = window.confirm("Use Lower Case?");
-     useNumbers = window.confirm("Use Numbers?");
-     useSymbols = window.confirm("Use Symbols?");
+     useUpper = window.confirm("Should your password use Upper Case?");
+     useLower = window.confirm("Should your password use Lower Case?");
+     useNumbers = window.confirm("Should your password use Numbers?");
+     useSymbols = window.confirm("Should your password use Symbols?");
      if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
-       window.alert("You must choose a type")
+       window.alert("You must choose at least one type type")
        getTypes();
      }
    }
