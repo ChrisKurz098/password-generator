@@ -42,6 +42,24 @@ header {
   padding: 30px 40px;
 }
 
+.userInput {
+  text-align: center;
+  
+}
+.userInput #pwLength
+{
+  text-align: center;
+  display:block;
+  margin:auto;
+  margin-top: 2vw;
+}
+.userInput .checkboxes{
+  text-align: left;
+  margin-top: 2vw;
+  padding-left: 25vw;
+  
+}
+
 .card-header::after {
   content: " ";
   display: block;

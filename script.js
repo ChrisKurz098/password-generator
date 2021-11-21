@@ -1,70 +1,70 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var selectionPass = 0;
 
 function generatePassword() {
-  var min=8;
-  var max=128;
-  var passwordLength='';
+  selectionPass = 0; //clear selectionPass. if both length and character type pass this needs to = 2
+  var min = 8;
+  var max = 128;
 
-  //ask for number, if it is <8 or >128 ask again
-  askLength();
-  function askLength() {
-    passwordLength = window.prompt("Please choose the length of your password. Choose a number between 8-128.");
-    
-    if (passwordLength < min || passwordLength > max || passwordLength === "" || isNaN(passwordLength)==true)
-    //isNaN checks if the value is NOT a number
-    {
-      window.alert("Please enter a number between 8-128");
-      askLength();
-    }
+
+  //get data inside input element
+
+  var passwordLength = document.getElementById("pwLength").value; 
+
+
+  if (passwordLength < min || passwordLength > max )//this is a number only input so there no need to check if its a string
+
+  {
+    window.alert("Please enter a number between 8-128");
+
   }
-  //Ask user for charater types. if they dont choose any character types then ask again
-   //must define these outside of function fist so we can use them outside the function
-   var useUpper = false;
-   var useLower = false;
-   var useNumbers = false;
-   var useSymbols = false;
-   getTypes();
-   function getTypes() {
-     useUpper = window.confirm("Should your password use Upper Case?");
-     useLower = window.confirm("Should your password use Lower Case?");
-     useNumbers = window.confirm("Should your password use Numbers?");
-     useSymbols = window.confirm("Should your password use Symbols?");
-     if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
-       window.alert("You must choose at least one type type")
-       getTypes();
-     }
-   }
+  else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true
 
-   //array that holds the character type selection
-   var chosenTypes = [useLower, useUpper, useNumbers, useSymbols];
-   console.log(chosenTypes);
- 
-   //differnt character types saved in arrays by type
-   var lowerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-   var upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-   var numberArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-   var symbolArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+", "<", ">", "?", "/", ";", ":", "[", "]","{","}","`","~"];
- 
-   /////////add the components of each set of characters based off prev selections///////
-   var characterArray = []; //this will hold all of the characters that were chosen by user
+  //get datta from checkboxes
 
-   //checks each value in the array. if its true it adds the corrosponding array to characterArray set
-   if (chosenTypes[0]) {
-     characterArray = characterArray.concat(lowerArray);
-   }
-   if (chosenTypes[1]) {
-     characterArray = characterArray.concat(upperArray);
-   }
-   if (chosenTypes[2]) {
-     characterArray = characterArray.concat(numberArray);
-   }
-   if (chosenTypes[3]) {
-     characterArray = characterArray.concat(symbolArray);
-   }
- 
-   console.log(characterArray)
-   
+  var useUpper = document.getElementById('useUpper').checked;
+  var useLower = document.getElementById('useLower').checked;
+  var useNumbers = document.getElementById('useNumbers').checked;
+  var useSymbols = document.getElementById('useSpecial').checked;
+
+  //make sure at least one box is checked
+  if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
+    window.alert("You must choose at least one type");
+
+  }
+  else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true. This needs to =2 
+
+
+  //array that holds the character type selection
+  var chosenTypes = [useLower, useUpper, useNumbers, useSymbols];
+  console.log(chosenTypes);
+
+  //differnt character types saved in arrays by type
+  var lowerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var upperArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numberArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  var symbolArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+", "<", ">", "?", "/", ";", ":", "[", "]", "{", "}", "`", "~"];
+
+  /////////add the components of each set of characters based off prev selections///////
+  var characterArray = []; //this will hold all of the characters that were chosen by user for generating pw
+
+  //checks each value in the array. if its true it adds the corrosponding character set array to characterArray
+  if (chosenTypes[0]) {
+    characterArray = characterArray.concat(lowerArray);
+  }
+  if (chosenTypes[1]) {
+    characterArray = characterArray.concat(upperArray);
+  }
+  if (chosenTypes[2]) {
+    characterArray = characterArray.concat(numberArray);
+  }
+  if (chosenTypes[3]) {
+    characterArray = characterArray.concat(symbolArray);
+  }
+
+  console.log(characterArray)
+
   /////////////actually generate code//////////
   var generatedPassword = "";
 
@@ -78,8 +78,9 @@ function generatePassword() {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  if (selectionPass == 2) {
+    passwordText.value = password;
+  }
 
 }
 
