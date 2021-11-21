@@ -4,20 +4,20 @@ var selectionPass = 0;
 
 function generatePassword() {
   selectionPass = 0; //clear selectionPass. if both length and character type pass this needs to = 2
-  document.querySelector("#password").value="";//clear the text box
+  document.querySelector("#password").value = "";//clear the text box
   var min = 8;
   var max = 128;
 
 
   //get data inside input element
 
-  var passwordLength = document.getElementById("pwLength").value; 
+  var passwordLength = document.getElementById("pwLength").value;
 
 
-  if (passwordLength < min || passwordLength > max )//this is a number only input so there no need to check if its a string
+  if (passwordLength < min || passwordLength > max)//this is a number only input so there no need to check if its a string
 
   {
-    document.querySelector("#password").value="You must enter a number between 8-128";
+    document.querySelector("#password").value = "You must enter a number between 8-128";
 
   }
   else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true
@@ -31,7 +31,7 @@ function generatePassword() {
 
   //make sure at least one box is checked
   if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
-    document.querySelector("#password").value+="\r\nYou must choose at least one type";
+    document.querySelector("#password").value += "\r\nYou must choose at least one type";
 
   }
   else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true. This needs to =2 
@@ -75,11 +75,17 @@ function generatePassword() {
 
   return generatedPassword;
 }
+
+
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  
+  var password =generatePassword();
+
   var passwordText = document.querySelector("#password");
-  if (selectionPass == 2) {
+
+  if (selectionPass == 2 ) {
+        //set new password
     passwordText.value = password;
   }
 

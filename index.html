@@ -8,20 +8,21 @@
   <title>Password Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
+<!------------------------------------------------------------------------------------------------>
 <body>
-
-
   <div class="wrapper">
     <header>
-      <h1>Password Generator</h1>
+      <h1>
+        <div id="passwordHeader">Password</div> 
+        <div id="generatorHeader">Generator</div>
+      </h1>
     </header>
 
     <div class="card">
       <div class="userInput">
         <lable for="pwLength">Please choose the length of your password. Choose a number between 8-128: </lable>
         <input type="number" step="1" placeholder="0" name="pwLength" id="pwLength" />
-        
+
         <div class="checkboxes">
           <input type="checkbox" name="lowerCase" id="useLower">
           <label for="lowerCase">Use Lower Case Characters</label><br>
