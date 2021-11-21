@@ -4,6 +4,7 @@ var selectionPass = 0;
 
 function generatePassword() {
   selectionPass = 0; //clear selectionPass. if both length and character type pass this needs to = 2
+  document.querySelector("#password").value="";//clear the text box
   var min = 8;
   var max = 128;
 
@@ -16,7 +17,7 @@ function generatePassword() {
   if (passwordLength < min || passwordLength > max )//this is a number only input so there no need to check if its a string
 
   {
-    window.alert("Please enter a number between 8-128");
+    document.querySelector("#password").value="You must enter a number between 8-128";
 
   }
   else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true
@@ -30,7 +31,7 @@ function generatePassword() {
 
   //make sure at least one box is checked
   if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
-    window.alert("You must choose at least one type");
+    document.querySelector("#password").value+="\r\nYou must choose at least one type";
 
   }
   else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true. This needs to =2 
@@ -49,7 +50,7 @@ function generatePassword() {
   /////////add the components of each set of characters based off prev selections///////
   var characterArray = []; //this will hold all of the characters that were chosen by user for generating pw
 
-  //checks each value in the array. if its true it adds the corrosponding character set array to characterArray
+  //checks each value in the array. if its true it adds the corrosponding character set array to characterArray set
   if (chosenTypes[0]) {
     characterArray = characterArray.concat(lowerArray);
   }
