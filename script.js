@@ -1,9 +1,13 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
-var selectionPass = 0;
+
+
+let globalObj = {
+  generateBtn : document.querySelector("#generate"),
+  selectionPass : 0
+}
 
 function generatePassword() {
-  selectionPass = 0; //clear selectionPass. if both length and character type pass this needs to = 2
+  globalObj.selectionPass = 0; //clear selectionPass. if both length and character type pass globalObj needs to = 2
   document.querySelector("#password").value = "";//clear the text box
   var min = 8;
   var max = 128;
@@ -14,13 +18,13 @@ function generatePassword() {
   var passwordLength = document.getElementById("pwLength").value;
 
 
-  if (passwordLength < min || passwordLength > max)//this is a number only input so there no need to check if its a string
+  if (passwordLength < min || passwordLength > max)//globalObj is a number only input so there no need to check if its a string
 
   {
     document.querySelector("#password").value = "You must enter a number between 8-128"; //places the error message inside the password area
 
   }
-  else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true
+  else { globalObj.selectionPass += 1 }//if there is the correct data, add one to indicate that is true
 
   //get datta from checkboxes
 
@@ -31,10 +35,10 @@ function generatePassword() {
 
   //make sure at least one box is checked
   if (useUpper === false && useLower === false && useNumbers === false && useSymbols === false) {
-    document.querySelector("#password").value += "\r\nYou must choose at least one type";
+    document.querySelector("#password").value += "\r\nYou must choose at least one character type";
 
   }
-  else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true. This needs to =2 
+  else { globalObj.selectionPass += 1 }//if there is the correct data, add one to indicate that is true. globalObj needs to =2 
 
 
   //array that holds the character type selection
@@ -48,7 +52,7 @@ function generatePassword() {
   var symbolArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+", "<", ">", "?", "/", ";", ":", "[", "]", "{", "}", "`", "~"];
 
   /////////add the components of each set of characters based off prev selections///////
-  var characterArray = []; //this will hold all of the characters that were chosen by user for generating pw
+  var characterArray = []; //globalObj will hold all of the characters that were chosen by user for generating pw
 
   //checks each value in the array. if its true it adds the corrosponding character set array to characterArray set
   if (chosenTypes[0]) {
@@ -77,14 +81,15 @@ function generatePassword() {
 }
 
 
+
 // Write password to the #password input
 function writePassword() {
   
-  var password =generatePassword();
+  var password = generatePassword();
 
   var passwordText = document.querySelector("#password");
-console.log(selectionPass);
-  if (selectionPass == 2 ) {
+console.log(globalObj.selectionPass);
+  if (globalObj.selectionPass == 2 ) {
         //set new password
     passwordText.value = password;
   }
@@ -92,4 +97,4 @@ console.log(selectionPass);
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+globalObj.generateBtn.addEventListener("click", writePassword);
