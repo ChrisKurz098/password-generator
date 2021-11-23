@@ -35,20 +35,22 @@ header {
 header h1{
  display: flex;
  justify-content: center;
- border-bottom: solid rgb(0, 0, 0,.5) 3px;
+
 
 }
 #passwordHeader{
- 
+  border-bottom: solid rgb(0, 0, 0,.5) 3px;
   text-align: left;
-  margin-right: 10px;
-  animation: fromLeft 1s;
+  padding-left: 5px;
+  padding-right: 10px; /*create space between the two elements while letting the borders connect*/
+  animation: fromLeft 1.5s;
 }
 #generatorHeader{
-  
+  border-bottom: solid rgb(0, 0, 0,.5) 3px;
   text-align: right;
-  margin-left: 10px;
-  animation: fromRight 1s;
+  padding-right: 5px;;
+  padding-left: 10px;/*create space between the two elements while letting the borders connect*/
+  animation: fromRight 1.5s;
 }
 
 
@@ -210,5 +212,12 @@ button[disabled] {
   }
 
 
+}
+
+@keyframes shimmer{
+  from{
+    color: white;
+    border-color: white;
+  }
 }
 

@@ -17,7 +17,7 @@ function generatePassword() {
   if (passwordLength < min || passwordLength > max)//this is a number only input so there no need to check if its a string
 
   {
-    document.querySelector("#password").value = "You must enter a number between 8-128";
+    document.querySelector("#password").value = "You must enter a number between 8-128"; //places the error message inside the password area
 
   }
   else { selectionPass += 1 }//if there is the correct data, add one to indicate that is true
@@ -83,7 +83,7 @@ function writePassword() {
   var password =generatePassword();
 
   var passwordText = document.querySelector("#password");
-
+console.log(selectionPass);
   if (selectionPass == 2 ) {
         //set new password
     passwordText.value = password;
