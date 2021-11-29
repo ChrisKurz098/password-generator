@@ -13,10 +13,10 @@ body,
 }
 
 body {
-  animation: fadeIn 1s;
   overflow-y: scroll;
   font-family: sans-serif;
   background-color: #f9fbfd;
+  animation: fadeIn 1.3s;
 }
 
 .wrapper {
@@ -190,7 +190,6 @@ button[disabled] {
 /*Keyfames*/
 @keyframes fadeIn{
   from {
-    filter:blur(4px);
     margin-top:100px; 
     opacity: 0;
   }
@@ -214,10 +213,5 @@ button[disabled] {
 
 }
 
-@keyframes shimmer{
-  from{
-    color: white;
-    border-color: white;
-  }
-}
+
 
